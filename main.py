@@ -1,4 +1,5 @@
 import os
+import re
 import time
 import pyautogui
 import sys
@@ -8,35 +9,37 @@ import wmi
 import subprocess
 import datetime
 import psutil
+import colorama
+from colorama import Style, init, Fore
+import base64
+import webbrowser
+import urllib
+from requests import get, post
 
-print(" Welcome to VERSA Anti Cheat")
+# START of AC
+init(convert=True)
+
+print(Style.BRIGHT+Fore.GREEN+base64.b64decode(b'4paI4paI4pWXICAg4paI4paI4pWX4paI4paI4paI4paI4paI4paI4paI4pWX4paI4paI4paI4paI4paI4paI4pWXIOKWiOKWiOKWiOKWiOKWiOKWiOKWiOKVlyDilojilojilojilojilojilZcgICAgICDilojilojilojilojilojilZcgIOKWiOKWiOKWiOKWiOKWiOKWiOKVlwrilojilojilZEgICDilojilojilZHilojilojilZTilZDilZDilZDilZDilZ3ilojilojilZTilZDilZDilojilojilZfilojilojilZTilZDilZDilZDilZDilZ3ilojilojilZTilZDilZDilojilojilZcgICAg4paI4paI4pWU4pWQ4pWQ4paI4paI4pWX4paI4paI4pWU4pWQ4pWQ4pWQ4pWQ4pWdCuKWiOKWiOKVkSAgIOKWiOKWiOKVkeKWiOKWiOKWiOKWiOKWiOKVlyAg4paI4paI4paI4paI4paI4paI4pWU4pWd4paI4paI4paI4paI4paI4paI4paI4pWX4paI4paI4paI4paI4paI4paI4paI4pWRICAgIOKWiOKWiOKWiOKWiOKWiOKWiOKWiOKVkeKWiOKWiOKVkSAgICAgCuKVmuKWiOKWiOKVlyDilojilojilZTilZ3ilojilojilZTilZDilZDilZ0gIOKWiOKWiOKVlOKVkOKVkOKWiOKWiOKVl+KVmuKVkOKVkOKVkOKVkOKWiOKWiOKVkeKWiOKWiOKVlOKVkOKVkOKWiOKWiOKVkSAgICDilojilojilZTilZDilZDilojilojilZHilojilojilZEgICAgIAog4pWa4paI4paI4paI4paI4pWU4pWdIOKWiOKWiOKWiOKWiOKWiOKWiOKWiOKVl+KWiOKWiOKVkSAg4paI4paI4pWR4paI4paI4paI4paI4paI4paI4paI4pWR4paI4paI4pWRICDilojilojilZEgICAg4paI4paI4pWRICDilojilojilZHilZrilojilojilojilojilojilojilZcKICDilZrilZDilZDilZDilZ0gIOKVmuKVkOKVkOKVkOKVkOKVkOKVkOKVneKVmuKVkOKVnSAg4pWa4pWQ4pWd4pWa4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWd4pWa4pWQ4pWdICDilZrilZDilZ0gICAg4pWa4pWQ4pWdICDilZrilZDilZ0g4pWa4pWQ4pWQ4pWQ4pWQ4pWQ4pWdCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA=').decode(), end='')
+print(Fore.RED + " \nWelcome to VERSA Anti-Cheat!")
 print()
-begin1 = input(" Are you ready to start recording? (y/n): ")
-
-begin2 = (" TO STOP RECORDING, CLOSE THE PROGRAM") 
+print(Fore.WHITE + 'To start Versa Anti-Cheat type: ' + Fore.MAGENTA + "start" + Fore.WHITE + '\nTo close Versa Anti-Cheat type: ' + Fore.MAGENTA + "close" + Fore.MAGENTA)
+begin1 = input("\n> ")
+begin2 = ("TO STOP RECORDING, CLOSE THE PROGRAM") 
 
 if path.exists(time.strftime("%Y.%m.%d")) == False:
     os.mkdir(time.strftime("%Y.%m.%d"))
 else: begin2
 
-if begin1 == "no": 
+if begin1 == "close": 
     sys.exit() 
 
-if begin1 == "n": 
-    sys.exit()
-
-if begin1 == "yes":
+if begin1 == "start":
     os.system('cls' if os.name == 'nt' else "printf '\033c'")
 
-    print(" WARNING: PLEASE DO NOT SHOW ANY PASSWORDS / CONFIDENTIAL INFORMATION WHILE RECORDING")
-    print()
-    print(" TO STOP RECORDING, CLOSE THE PROGRAM")
+    print(Fore.RED + "WARNING: " + Fore.WHITE + "PLEASE DO NOT SHOW ANY PASSWORDS / CONFIDENTIAL INFORMATION WHILE RECORDING")
+    print(Fore.RED + "WARNING: " + Fore.WHITE + "TO STOP RECORDING, CLOSE THE PROGRAM")
 
-if begin1 == "y":
-    os.system('cls' if os.name == 'nt' else "printf '\033c'")
-    print(" WARNING: PLEASE DO NOT SHOW ANY PASSWORDS / CONFIDENTIAL INFORMATION WHILE RECORDING")
-    print()
-    print(" TO STOP RECORDING, CLOSE THE PROGRAM")
+    
 
 output = os.popen('wmic process get description').read()
 
@@ -50,18 +53,20 @@ while True:
 
     print()
 
-    print(" Image Saved: " + "" + (time.strftime("%Y.%m.%d.%H.%M.%S.png")))
+    print(Fore.MAGENTA + "LOG: " + Fore.BLUE + "[Image Saved] "+ Fore.WHITE + "" + (time.strftime("%Y.%m.%d.%H.%M.%S.png")))
 
     x = open((time.strftime("%Y.%m.%d")) + "/" + time.strftime("%Y.%m.%d.%H.%M.%S")+".txt", "w")
     x.writelines(output)
 
     print()
-    print(" File Saved: " + "" + (time.strftime("%Y.%m.%d.%H.%M.%S")+".txt"))
+    print(Fore.MAGENTA + "LOG: " + Fore.BLUE + "[File Saved] "+ Fore.WHITE + "" + (time.strftime("%Y.%m.%d.%H.%M.%S")+".txt"))
 
 
 
- 
 
 
-        
 close2 = input("CLOSE")
+
+# HOW 2 for ASCSII print(base64.b64decode(b'put base64 string here').decode(), end='')
+
+#print(Fore.RED + base64.b64decode(b'').decode() + "\nError: " + Fore.WHITE + "You're Discord account is not compatible with DISCORD PROT!", end='')
