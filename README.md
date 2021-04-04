@@ -1,2 +1,2 @@
-# Versa-AntiCheat
+# versa ac
 Alternative to using Moss.
